@@ -1,13 +1,17 @@
-package ru.mihkopylov.spring.version.path;
+package ru.mihkopylov.spring.version;
 
 import java.lang.reflect.Method;
+import lombok.AllArgsConstructor;
+import lombok.NonNull;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.web.servlet.mvc.condition.RequestCondition;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
-import ru.mihkopylov.spring.version.VersionRequestCondition;
-import ru.mihkopylov.spring.version.VersionedResource;
 
-public class PathVersionRequestMappingHandlerMapping extends RequestMappingHandlerMapping {
+@AllArgsConstructor
+public class VersionRequestMappingHandlerMapping extends RequestMappingHandlerMapping {
+    @NonNull
+    private final RequestVersionExtractor requestVersionExtractor;
+
     @Override
     protected RequestCondition<?> getCustomTypeCondition( Class<?> handlerType ) {
         return createCondition( AnnotationUtils.findAnnotation( handlerType, VersionedResource.class ) );
@@ -20,6 +24,6 @@ public class PathVersionRequestMappingHandlerMapping extends RequestMappingHandl
 
     private RequestCondition<?> createCondition( VersionedResource versionedResource ) {
         return (versionedResource != null) ? new VersionRequestCondition( versionedResource.from(),
-                versionedResource.to(), new PathRequestVersionExtractor() ) : null;
+                versionedResource.to(), requestVersionExtractor ) : null;
     }
 }
