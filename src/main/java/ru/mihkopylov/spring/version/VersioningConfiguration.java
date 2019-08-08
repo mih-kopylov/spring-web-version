@@ -14,4 +14,5 @@ public class VersioningConfiguration {
     private String pathVersionPrefix = "v";
     private String header = "version";
     private String query = "version";
+    private String accept = "application/vnd\\.v(\\d+)\\+json";
 }
