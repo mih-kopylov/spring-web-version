@@ -13,4 +13,5 @@ public class VersioningConfiguration {
     private VersioningType type;
     private String pathVersionPrefix = "v";
     private String header = "version";
+    private String query = "version";
 }
