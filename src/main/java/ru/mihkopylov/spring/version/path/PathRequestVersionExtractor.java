@@ -5,16 +5,12 @@ import java.util.Objects;
 import java.util.Optional;
 import javax.servlet.http.HttpServletRequest;
 import lombok.NonNull;
-import ru.mihkopylov.spring.version.AbstractVersionRequestCondition;
+import ru.mihkopylov.spring.version.RequestVersionExtractor;
 
-public class PathVersionRequestCondition extends AbstractVersionRequestCondition<PathVersionRequestCondition> {
-    public PathVersionRequestCondition( int minVersion, int maxVersion ) {
-        super( minVersion, maxVersion );
-    }
-
+public class PathRequestVersionExtractor implements RequestVersionExtractor {
     @Override
     @NonNull
-    protected Optional<Integer> getRequestVersion( @NonNull HttpServletRequest httpServletRequest ) {
+    public Optional<Integer> getRequestVersion( @NonNull HttpServletRequest httpServletRequest ) {
         return Optional.of( httpServletRequest.getRequestURI() )
                 .filter( uri -> uri.startsWith( "/v" ) )
                 .stream()
