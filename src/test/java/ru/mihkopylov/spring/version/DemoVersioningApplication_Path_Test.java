@@ -26,32 +26,42 @@ public class DemoVersioningApplication_Path_Test {
     @Test
     public void wihtoutVersion() throws Exception {
         final String content =
-                mockMvc.perform(MockMvcRequestBuilders.get("/list")).andReturn().getResponse().getContentAsString();
-        final List<String> result = new ObjectMapper().readValue(content, new TypeReference<List<String>>() {});
-        assertThat(result).isEqualTo(List.of(""));
+                mockMvc.perform( MockMvcRequestBuilders.get( "/list" ) ).andReturn().getResponse().getContentAsString();
+        final List<String> result = new ObjectMapper().readValue( content, new TypeReference<List<String>>() {
+        } );
+        assertThat( result ).isEqualTo( List.of( "" ) );
     }
 
     @Test
     public void version1() throws Exception {
-        final String content =
-                mockMvc.perform(MockMvcRequestBuilders.get("/v1/list")).andReturn().getResponse().getContentAsString();
-        final List<String> result = new ObjectMapper().readValue(content, new TypeReference<List<String>>() {});
-        assertThat(result).isEqualTo(List.of("1"));
+        final String content = mockMvc.perform( MockMvcRequestBuilders.get( "/v1/list" ) )
+                .andReturn()
+                .getResponse()
+                .getContentAsString();
+        final List<String> result = new ObjectMapper().readValue( content, new TypeReference<List<String>>() {
+        } );
+        assertThat( result ).isEqualTo( List.of( "1" ) );
     }
 
     @Test
     public void version2() throws Exception {
-        final String content =
-                mockMvc.perform(MockMvcRequestBuilders.get("/v2/list")).andReturn().getResponse().getContentAsString();
-        final List<String> result = new ObjectMapper().readValue(content, new TypeReference<List<String>>() {});
-        assertThat(result).isEqualTo(List.of("1"));
+        final String content = mockMvc.perform( MockMvcRequestBuilders.get( "/v2/list" ) )
+                .andReturn()
+                .getResponse()
+                .getContentAsString();
+        final List<String> result = new ObjectMapper().readValue( content, new TypeReference<List<String>>() {
+        } );
+        assertThat( result ).isEqualTo( List.of( "1" ) );
     }
 
     @Test
     public void version3() throws Exception {
-        final String content =
-                mockMvc.perform(MockMvcRequestBuilders.get("/v3/list")).andReturn().getResponse().getContentAsString();
-        final List<String> result = new ObjectMapper().readValue(content, new TypeReference<List<String>>() {});
-        assertThat(result).isEqualTo(List.of("3"));
+        final String content = mockMvc.perform( MockMvcRequestBuilders.get( "/v3/list" ) )
+                .andReturn()
+                .getResponse()
+                .getContentAsString();
+        final List<String> result = new ObjectMapper().readValue( content, new TypeReference<List<String>>() {
+        } );
+        assertThat( result ).isEqualTo( List.of( "3" ) );
     }
 }
