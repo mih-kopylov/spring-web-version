@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 @Getter
 @Setter
 public class VersioningConfiguration {
-    private boolean enabled;
     private VersioningType type;
     private String pathVersionPrefix = "v";
 }
