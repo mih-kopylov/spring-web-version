@@ -20,6 +20,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @AutoConfigureMockMvc
 @TestPropertySource(properties = "spring.mvc.versioning.type=PATH")
 public class DemoVersioningApplication_Path_Test {
+    private final ObjectMapper objectMapper = new ObjectMapper();
     @Autowired
     private MockMvc mockMvc;
 
@@ -27,7 +28,7 @@ public class DemoVersioningApplication_Path_Test {
     public void wihtoutVersion() throws Exception {
         final String content =
                 mockMvc.perform( MockMvcRequestBuilders.get( "/list" ) ).andReturn().getResponse().getContentAsString();
-        final List<String> result = new ObjectMapper().readValue( content, new TypeReference<List<String>>() {
+        final List<String> result = objectMapper.readValue( content, new TypeReference<List<String>>() {
         } );
         assertThat( result ).isEqualTo( List.of( "" ) );
     }
@@ -38,7 +39,7 @@ public class DemoVersioningApplication_Path_Test {
                 .andReturn()
                 .getResponse()
                 .getContentAsString();
-        final List<String> result = new ObjectMapper().readValue( content, new TypeReference<List<String>>() {
+        final List<String> result = objectMapper.readValue( content, new TypeReference<List<String>>() {
         } );
         assertThat( result ).isEqualTo( List.of( "1" ) );
     }
@@ -49,7 +50,7 @@ public class DemoVersioningApplication_Path_Test {
                 .andReturn()
                 .getResponse()
                 .getContentAsString();
-        final List<String> result = new ObjectMapper().readValue( content, new TypeReference<List<String>>() {
+        final List<String> result = objectMapper.readValue( content, new TypeReference<List<String>>() {
         } );
         assertThat( result ).isEqualTo( List.of( "1" ) );
     }
@@ -60,7 +61,7 @@ public class DemoVersioningApplication_Path_Test {
                 .andReturn()
                 .getResponse()
                 .getContentAsString();
-        final List<String> result = new ObjectMapper().readValue( content, new TypeReference<List<String>>() {
+        final List<String> result = objectMapper.readValue( content, new TypeReference<List<String>>() {
         } );
         assertThat( result ).isEqualTo( List.of( "3" ) );
     }
