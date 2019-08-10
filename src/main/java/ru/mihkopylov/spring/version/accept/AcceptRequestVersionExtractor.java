@@ -1,4 +1,4 @@
-package ru.mihkopylov.spring.version.accept.header;
+package ru.mihkopylov.spring.version.accept;
 
 import java.util.Optional;
 import java.util.regex.Matcher;

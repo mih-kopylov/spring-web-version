@@ -1,4 +1,4 @@
-package ru.mihkopylov.spring.version.accept.header;
+package ru.mihkopylov.spring.version.accept;
 
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
