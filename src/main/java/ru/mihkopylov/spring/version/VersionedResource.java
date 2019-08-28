@@ -9,6 +9,4 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface VersionedResource {
     int from() default 0;
-
-    int to() default Integer.MAX_VALUE;
 }

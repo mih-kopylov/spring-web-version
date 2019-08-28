@@ -13,7 +13,7 @@ public class DemoController {
     }
 
     @GetMapping("/list")
-    @VersionedResource(from = 3, to = 3)
+    @VersionedResource(from = 3)
     public List<String> getListVersion3() {
         return List.of( "3" );
     }

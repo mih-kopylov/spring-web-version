@@ -24,6 +24,6 @@ public class VersionRequestMappingHandlerMapping extends RequestMappingHandlerMa
 
     private RequestCondition<?> createCondition( VersionedResource versionedResource ) {
         return (versionedResource != null) ? new VersionRequestCondition( versionedResource.from(),
-                versionedResource.to(), requestVersionExtractor ) : null;
+                requestVersionExtractor ) : null;
     }
 }

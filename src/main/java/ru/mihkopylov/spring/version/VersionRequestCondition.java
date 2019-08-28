@@ -9,7 +9,6 @@ import org.springframework.web.servlet.mvc.condition.RequestCondition;
 @AllArgsConstructor
 public class VersionRequestCondition implements RequestCondition<VersionRequestCondition> {
     private final int minVersion;
-    private final int maxVersion;
     @NonNull
     private final RequestVersionExtractor requestVersionExtractor;
 
@@ -24,7 +23,7 @@ public class VersionRequestCondition implements RequestCondition<VersionRequestC
         if (requestVersion.isEmpty()) {
             return null;
         }
-        if (requestVersion.get() < minVersion || requestVersion.get() > maxVersion) {
+        if (requestVersion.get() < minVersion) {
             return null;
         }
         return this;
