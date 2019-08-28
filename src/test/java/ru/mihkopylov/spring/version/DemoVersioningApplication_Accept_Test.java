@@ -34,6 +34,12 @@ public class DemoVersioningApplication_Accept_Test {
         assertThat( result ).isEqualTo( List.of( "" ) );
     }
 
+    @Test(expected = Exception.class)
+    public void version0() throws Exception {
+        mockMvc.perform(
+                MockMvcRequestBuilders.get( "/list" ).header( HttpHeaders.ACCEPT, "application/vnd.v0+json" ) );
+    }
+
     @Test
     public void version1() throws Exception {
         final String content = mockMvc.perform(

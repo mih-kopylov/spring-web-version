@@ -5,10 +5,12 @@ import javax.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
 import org.springframework.web.servlet.mvc.condition.RequestCondition;
+import ru.mihkopylov.spring.version.exception.UnsupportedVersionExcepion;
 
 @AllArgsConstructor
 public class VersionRequestCondition implements RequestCondition<VersionRequestCondition> {
-    private final int minVersion;
+    private final int apiMinVersion;
+    private final int handlerMinVersion;
     @NonNull
     private final RequestVersionExtractor requestVersionExtractor;
 
@@ -23,7 +25,11 @@ public class VersionRequestCondition implements RequestCondition<VersionRequestC
         if (requestVersion.isEmpty()) {
             return null;
         }
-        if (requestVersion.get() < minVersion) {
+        int requestVersionValue = requestVersion.get();
+        if (requestVersionValue < apiMinVersion) {
+            throw new UnsupportedVersionExcepion( apiMinVersion, requestVersionValue );
+        }
+        if (requestVersionValue < handlerMinVersion) {
             return null;
         }
         return this;
@@ -31,6 +37,6 @@ public class VersionRequestCondition implements RequestCondition<VersionRequestC
 
     @Override
     public final int compareTo( VersionRequestCondition conditon, HttpServletRequest httpServletRequest ) {
-        return conditon.minVersion - minVersion;
+        return conditon.handlerMinVersion - handlerMinVersion;
     }
 }

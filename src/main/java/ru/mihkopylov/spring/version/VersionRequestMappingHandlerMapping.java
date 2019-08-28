@@ -9,6 +9,7 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandl
 
 @AllArgsConstructor
 public class VersionRequestMappingHandlerMapping extends RequestMappingHandlerMapping {
+    private final int apiMinVersion;
     @NonNull
     private final RequestVersionExtractor requestVersionExtractor;
 
@@ -23,7 +24,7 @@ public class VersionRequestMappingHandlerMapping extends RequestMappingHandlerMa
     }
 
     private RequestCondition<?> createCondition( VersionedResource versionedResource ) {
-        return (versionedResource != null) ? new VersionRequestCondition( versionedResource.from(),
+        return (versionedResource != null) ? new VersionRequestCondition( apiMinVersion, versionedResource.from(),
                 requestVersionExtractor ) : null;
     }
 }

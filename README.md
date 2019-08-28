@@ -150,3 +150,9 @@ In this configuration version is passed inside custom `Accept` header value, for
 
 Header value can also be configured via property `spring.mvc.versioning.accept=application/vnd\\+json;version=(\\d+)`, so accept value will look like `application/vnd+json;version=1`.
 The property should contain a regexp pattern with a single group which contains a numeric version.
+
+## Minimal API version
+
+Default minimal API version is 1. That means if a request comes with version 0 then an `ru.mihkopylov.spring.version.exception.UnsupportedVersionException` will be thrown.
+
+Minimal API version can be configured via `spring.mvc.versioning.apiMinVersion=10` property

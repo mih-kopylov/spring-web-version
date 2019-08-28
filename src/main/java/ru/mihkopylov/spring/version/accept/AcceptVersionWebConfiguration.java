@@ -18,7 +18,7 @@ public class AcceptVersionWebConfiguration extends WebMvcConfigurationSupport {
 
     @Override
     protected RequestMappingHandlerMapping createRequestMappingHandlerMapping() {
-        return new VersionRequestMappingHandlerMapping(
+        return new VersionRequestMappingHandlerMapping( configuration.getApiMinVersion(),
                 new AcceptRequestVersionExtractor( configuration.getAccept() ) );
     }
 }

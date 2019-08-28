@@ -15,4 +15,8 @@ public class VersioningConfiguration {
     private String header = "version";
     private String query = "version";
     private String accept = "application/vnd\\.v(\\d+)\\+json";
+    /**
+     * Minimal API version
+     */
+    private int apiMinVersion = 1;
 }

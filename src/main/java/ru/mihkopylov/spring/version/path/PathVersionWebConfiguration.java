@@ -19,7 +19,7 @@ public class PathVersionWebConfiguration extends WebMvcConfigurationSupport {
 
     @Override
     protected RequestMappingHandlerMapping createRequestMappingHandlerMapping() {
-        return new VersionRequestMappingHandlerMapping(
+        return new VersionRequestMappingHandlerMapping( configuration.getApiMinVersion(),
                 new PathRequestVersionExtractor( configuration.getPathVersionPrefix() ) );
     }
 

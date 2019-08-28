@@ -18,6 +18,7 @@ public class QueryVersionWebConfiguration extends WebMvcConfigurationSupport {
 
     @Override
     protected RequestMappingHandlerMapping createRequestMappingHandlerMapping() {
-        return new VersionRequestMappingHandlerMapping( new QueryRequestVersionExtractor( configuration.getQuery() ) );
+        return new VersionRequestMappingHandlerMapping( configuration.getApiMinVersion(),
+                new QueryRequestVersionExtractor( configuration.getQuery() ) );
     }
 }

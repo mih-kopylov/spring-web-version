@@ -33,6 +33,11 @@ public class DemoVersioningApplication_Path_Test {
         assertThat( result ).isEqualTo( List.of( "" ) );
     }
 
+    @Test(expected = Exception.class)
+    public void version0() throws Exception {
+        mockMvc.perform( MockMvcRequestBuilders.get( "/v0/list" ) );
+    }
+
     @Test
     public void version1() throws Exception {
         final String content = mockMvc.perform( MockMvcRequestBuilders.get( "/v1/list" ) )

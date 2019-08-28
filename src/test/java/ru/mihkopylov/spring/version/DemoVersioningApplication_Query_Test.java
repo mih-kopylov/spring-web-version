@@ -33,6 +33,11 @@ public class DemoVersioningApplication_Query_Test {
         assertThat( result ).isEqualTo( List.of( "" ) );
     }
 
+    @Test(expected = Exception.class)
+    public void version0() throws Exception {
+        mockMvc.perform( MockMvcRequestBuilders.get( "/list?version=0" ) );
+    }
+
     @Test
     public void version1() throws Exception {
         final String content = mockMvc.perform( MockMvcRequestBuilders.get( "/list?version=1" ) )

@@ -18,7 +18,7 @@ public class HeaderVersionWebConfiguration extends WebMvcConfigurationSupport {
 
     @Override
     protected RequestMappingHandlerMapping createRequestMappingHandlerMapping() {
-        return new VersionRequestMappingHandlerMapping(
+        return new VersionRequestMappingHandlerMapping( configuration.getApiMinVersion(),
                 new HeaderRequestVersionExtractor( configuration.getHeader() ) );
     }
 }
