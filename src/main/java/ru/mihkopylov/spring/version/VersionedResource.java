@@ -20,5 +20,5 @@ public @interface VersionedResource {
     /**
      * @return API version as from which the annotated handler will match a request until another handler for the same URL with a greater {@code from} parameter is defined
      */
-    int from() default 0;
+    int from();
 }

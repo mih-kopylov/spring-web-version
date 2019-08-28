@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Unreleased
 ### Added
 - Minimal API version configuration
+### Removed
+- Redundant `VersionedResource.to` parameter
+- Default value for `VersionedResource.from`
 
 ## 0.1.1 - 2019-08-10
 ### Fixed
