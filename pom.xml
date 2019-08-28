@@ -10,7 +10,7 @@
     </parent>
     <groupId>ru.mihkopylov</groupId>
     <artifactId>spring-web-version</artifactId>
-    <version>0.2.0</version>
+    <version>0.2.1-SNAPSHOT</version>
     <name>spring-web-version</name>
     <description>Spring Boot library to manage REST API versioning</description>
     <url>https://github.com/mih-kopylov/spring-web-version</url>
