@@ -156,3 +156,9 @@ The property should contain a regexp pattern with a single group which contains 
 Default minimal API version is 1. That means if a request comes with version 0 then an `ru.mihkopylov.spring.version.exception.UnsupportedVersionException` will be thrown.
 
 Minimal API version can be configured via `spring.mvc.versioning.apiMinVersion=10` property
+
+# Contribute
+
+Please do contribute! Issues and pull requests are welcome.
+
+Thank you for your help!
