@@ -1,4 +1,4 @@
-package ru.mihkopylov.spring.version;
+package other.pack.spring.version;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -18,8 +18,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-@TestPropertySource(properties = "spring.mvc.versioning.type=HEADER")
-public class DemoVersioningApplication_Header_Test {
+@TestPropertySource(properties = {"spring.mvc.versioning.type=HEADER", "spring.mvc.versioning.header=ApiVersion"})
+public class DemoVersioningApplication_Header_Custom_Test {
     private final ObjectMapper objectMapper = new ObjectMapper();
     @Autowired
     private MockMvc mockMvc;
@@ -33,14 +33,9 @@ public class DemoVersioningApplication_Header_Test {
         assertThat( result ).isEqualTo( List.of( "" ) );
     }
 
-    @Test(expected = Exception.class)
-    public void version0() throws Exception {
-        mockMvc.perform( MockMvcRequestBuilders.get( "/list" ).header( "version", "0" ) );
-    }
-
     @Test
     public void version1() throws Exception {
-        final String content = mockMvc.perform( MockMvcRequestBuilders.get( "/list" ).header( "version", "1" ) )
+        final String content = mockMvc.perform( MockMvcRequestBuilders.get( "/list" ).header( "ApiVersion", "1" ) )
                 .andReturn()
                 .getResponse()
                 .getContentAsString();
@@ -51,7 +46,7 @@ public class DemoVersioningApplication_Header_Test {
 
     @Test
     public void version2() throws Exception {
-        final String content = mockMvc.perform( MockMvcRequestBuilders.get( "/list" ).header( "version", "2" ) )
+        final String content = mockMvc.perform( MockMvcRequestBuilders.get( "/list" ).header( "ApiVersion", "2" ) )
                 .andReturn()
                 .getResponse()
                 .getContentAsString();
@@ -62,7 +57,7 @@ public class DemoVersioningApplication_Header_Test {
 
     @Test
     public void version3() throws Exception {
-        final String content = mockMvc.perform( MockMvcRequestBuilders.get( "/list" ).header( "version", "3" ) )
+        final String content = mockMvc.perform( MockMvcRequestBuilders.get( "/list" ).header( "ApiVersion", "3" ) )
                 .andReturn()
                 .getResponse()
                 .getContentAsString();

@@ -1,4 +1,4 @@
-package ru.mihkopylov.spring.version;
+package other.pack.spring.version;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -8,7 +8,6 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.HttpHeaders;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
@@ -19,8 +18,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-@TestPropertySource(properties = "spring.mvc.versioning.type=ACCEPT")
-public class DemoVersioningApplication_Accept_Test {
+@TestPropertySource(properties = {"spring.mvc.versioning.type=QUERY", "spring.mvc.versioning.query=v"})
+public class DemoVersioningApplication_Query_Custom_Test {
     private final ObjectMapper objectMapper = new ObjectMapper();
     @Autowired
     private MockMvc mockMvc;
@@ -34,16 +33,9 @@ public class DemoVersioningApplication_Accept_Test {
         assertThat( result ).isEqualTo( List.of( "" ) );
     }
 
-    @Test(expected = Exception.class)
-    public void version0() throws Exception {
-        mockMvc.perform(
-                MockMvcRequestBuilders.get( "/list" ).header( HttpHeaders.ACCEPT, "application/vnd.v0+json" ) );
-    }
-
     @Test
     public void version1() throws Exception {
-        final String content = mockMvc.perform(
-                MockMvcRequestBuilders.get( "/list" ).header( HttpHeaders.ACCEPT, "application/vnd.v1+json" ) )
+        final String content = mockMvc.perform( MockMvcRequestBuilders.get( "/list?v=1" ) )
                 .andReturn()
                 .getResponse()
                 .getContentAsString();
@@ -54,8 +46,7 @@ public class DemoVersioningApplication_Accept_Test {
 
     @Test
     public void version2() throws Exception {
-        final String content = mockMvc.perform(
-                MockMvcRequestBuilders.get( "/list" ).header( HttpHeaders.ACCEPT, "application/vnd.v2+json" ) )
+        final String content = mockMvc.perform( MockMvcRequestBuilders.get( "/list?v=2" ) )
                 .andReturn()
                 .getResponse()
                 .getContentAsString();
@@ -66,8 +57,7 @@ public class DemoVersioningApplication_Accept_Test {
 
     @Test
     public void version3() throws Exception {
-        final String content = mockMvc.perform(
-                MockMvcRequestBuilders.get( "/list" ).header( HttpHeaders.ACCEPT, "application/vnd.v3+json" ) )
+        final String content = mockMvc.perform( MockMvcRequestBuilders.get( "/list?v=3" ) )
                 .andReturn()
                 .getResponse()
                 .getContentAsString();

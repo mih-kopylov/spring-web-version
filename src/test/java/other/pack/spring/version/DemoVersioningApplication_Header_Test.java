@@ -1,4 +1,4 @@
-package ru.mihkopylov.spring.version;
+package other.pack.spring.version;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -18,8 +18,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-@TestPropertySource(properties = "spring.mvc.versioning.type=QUERY")
-public class DemoVersioningApplication_Query_Test {
+@TestPropertySource(properties = "spring.mvc.versioning.type=HEADER")
+public class DemoVersioningApplication_Header_Test {
     private final ObjectMapper objectMapper = new ObjectMapper();
     @Autowired
     private MockMvc mockMvc;
@@ -35,12 +35,12 @@ public class DemoVersioningApplication_Query_Test {
 
     @Test(expected = Exception.class)
     public void version0() throws Exception {
-        mockMvc.perform( MockMvcRequestBuilders.get( "/list?version=0" ) );
+        mockMvc.perform( MockMvcRequestBuilders.get( "/list" ).header( "version", "0" ) );
     }
 
     @Test
     public void version1() throws Exception {
-        final String content = mockMvc.perform( MockMvcRequestBuilders.get( "/list?version=1" ) )
+        final String content = mockMvc.perform( MockMvcRequestBuilders.get( "/list" ).header( "version", "1" ) )
                 .andReturn()
                 .getResponse()
                 .getContentAsString();
@@ -51,7 +51,7 @@ public class DemoVersioningApplication_Query_Test {
 
     @Test
     public void version2() throws Exception {
-        final String content = mockMvc.perform( MockMvcRequestBuilders.get( "/list?version=2" ) )
+        final String content = mockMvc.perform( MockMvcRequestBuilders.get( "/list" ).header( "version", "2" ) )
                 .andReturn()
                 .getResponse()
                 .getContentAsString();
@@ -62,7 +62,7 @@ public class DemoVersioningApplication_Query_Test {
 
     @Test
     public void version3() throws Exception {
-        final String content = mockMvc.perform( MockMvcRequestBuilders.get( "/list?version=3" ) )
+        final String content = mockMvc.perform( MockMvcRequestBuilders.get( "/list" ).header( "version", "3" ) )
                 .andReturn()
                 .getResponse()
                 .getContentAsString();

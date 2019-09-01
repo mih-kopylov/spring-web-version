@@ -1,8 +1,9 @@
-package ru.mihkopylov.spring.version;
+package other.pack.spring.version;
 
 import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import ru.mihkopylov.spring.version.VersionedResource;
 
 @RestController
 public class DemoController {

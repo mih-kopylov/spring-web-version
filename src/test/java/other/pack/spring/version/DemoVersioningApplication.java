@@ -1,4 +1,4 @@
-package ru.mihkopylov.spring.version;
+package other.pack.spring.version;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

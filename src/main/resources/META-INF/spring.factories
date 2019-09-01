@@ -1,0 +1,6 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  ru.mihkopylov.spring.version.accept.AcceptVersionWebConfiguration,\
+  ru.mihkopylov.spring.version.header.HeaderVersionWebConfiguration,\
+  ru.mihkopylov.spring.version.path.PathVersionWebConfiguration,\
+  ru.mihkopylov.spring.version.query.QueryVersionWebConfiguration
+
