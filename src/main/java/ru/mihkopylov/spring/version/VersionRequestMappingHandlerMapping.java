@@ -4,6 +4,7 @@ import java.lang.reflect.Method;
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
 import org.springframework.core.annotation.AnnotationUtils;
+import org.springframework.lang.Nullable;
 import org.springframework.web.servlet.mvc.condition.RequestCondition;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
@@ -23,7 +24,8 @@ public class VersionRequestMappingHandlerMapping extends RequestMappingHandlerMa
         return createCondition( AnnotationUtils.findAnnotation( method, VersionedResource.class ) );
     }
 
-    private RequestCondition<?> createCondition( VersionedResource versionedResource ) {
+    @NonNull
+    private RequestCondition<?> createCondition( @Nullable VersionedResource versionedResource ) {
         return (versionedResource != null) ? new VersionRequestCondition( apiMinVersion, versionedResource.from(),
                 requestVersionExtractor ) : null;
     }

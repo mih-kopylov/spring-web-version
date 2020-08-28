@@ -1,0 +1,7 @@
+spring:
+  mvc:
+    versioning:
+      apiMinVersion: 1
+logging:
+  level:
+    ru.mihkopylov: debug
