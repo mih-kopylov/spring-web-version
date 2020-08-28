@@ -10,16 +10,16 @@ import org.springframework.core.Ordered;
 import org.springframework.web.servlet.config.annotation.DelegatingWebMvcConfiguration;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 import ru.mihkopylov.spring.version.VersionRequestMappingHandlerMapping;
-import ru.mihkopylov.spring.version.VersioningConfiguration;
+import ru.mihkopylov.spring.version.VersioningConfigurationProperties;
 
 @Configuration
 @ConditionalOnProperty(value = "spring.mvc.versioning.type", havingValue = "ACCEPT")
-@EnableConfigurationProperties(VersioningConfiguration.class)
+@EnableConfigurationProperties(VersioningConfigurationProperties.class)
 @AutoConfigureOrder(Ordered.HIGHEST_PRECEDENCE)
 @AllArgsConstructor
 public class AcceptVersionWebConfiguration extends DelegatingWebMvcConfiguration {
     @NonNull
-    private final VersioningConfiguration configuration;
+    private final VersioningConfigurationProperties configuration;
 
     @Override
     protected RequestMappingHandlerMapping createRequestMappingHandlerMapping() {
