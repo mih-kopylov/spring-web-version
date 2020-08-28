@@ -48,6 +48,7 @@
 
     <properties>
         <java.version>11</java.version>
+        <versioner-maven-plugin.version>3.3.1</versioner-maven-plugin.version>
     </properties>
 
     <dependencies>
@@ -82,9 +83,9 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>ru.omickron</groupId>
+                <groupId>ru.mihkopylov</groupId>
                 <artifactId>versioner-maven-plugin</artifactId>
-                <version>2.1.0</version>
+                <version>3.3.1</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
