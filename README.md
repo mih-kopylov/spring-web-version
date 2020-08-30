@@ -1,5 +1,10 @@
 # Spring Web Version 
 
+[![Build Status](https://travis-ci.com/mih-kopylov/spring-web-version.svg)](https://travis-ci.com/mih-kopylov/spring-web-version)
+[![Maven Central](https://img.shields.io/maven-central/v/ru.mihkopylov/spring-web-version.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22ru.mihkopylov%22%20AND%20a:%22spring-web-version%22)
+![License](https://img.shields.io/github/license/mih-kopylov/spring-web-version)
+
+
 When building RESTful API it is worth thinking about API versioning from the early beginning, even if it seems to have a single version forever at the moment.
 That means API should have a version, and usually the version starts from 1.
 
