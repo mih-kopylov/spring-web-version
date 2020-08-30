@@ -23,7 +23,7 @@ public class VersionRequestCondition implements RequestCondition<VersionRequestC
      * {@link org.springframework.web.bind.annotation.RequestMapping} annotation and both have {@link VersionedResource}.
      * According to {@link RequestMappingHandlerMapping#getMappingForMethod(Method, Class)} implementation
      * {@code combine} method is called on class level condition and method level condition comes in parameter.
-     * Since method level {@link @VersionedResource} has more power, it is returned back.
+     * Since method level {@link VersionedResource} has more power, it is returned back.
      */
     @SuppressWarnings("JavadocReference")
     @Override
