@@ -14,7 +14,7 @@ import ru.mihkopylov.spring.version.VersionRequestMappingHandlerMapping;
 import ru.mihkopylov.spring.version.VersioningConfigurationProperties;
 
 @Configuration
-@ConditionalOnProperty(value = "spring.mvc.versioning.type", havingValue = "PATH")
+@ConditionalOnProperty(value = "spring.mvc.versioning.type", havingValue = "path")
 @EnableConfigurationProperties(VersioningConfigurationProperties.class)
 @AutoConfigureOrder(Ordered.HIGHEST_PRECEDENCE)
 @AllArgsConstructor
