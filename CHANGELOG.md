@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Switch to Spring Boot 2.3
 - Switch to verioner-maven-plugin:3.3
 
+### Fixed
+- Support `@VersionedResource` for both class and method levels at the same time
+
 ## 0.3.0 - 2019-09-01
 ### Added
 - Support spring boot auto-configuration
@@ -16,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## 0.2.0 - 2019-08-28
 ### Added
 - Minimal API version configuration
+
 ### Removed
 - Redundant `VersionedResource.to` parameter
 - Default value for `VersionedResource.from`
