@@ -8,6 +8,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.web.servlet.mvc.condition.RequestCondition;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
+import static java.util.Objects.nonNull;
+
 @AllArgsConstructor
 public class VersionRequestMappingHandlerMapping extends RequestMappingHandlerMapping {
     private final int apiMinVersion;
@@ -16,12 +18,17 @@ public class VersionRequestMappingHandlerMapping extends RequestMappingHandlerMa
 
     @Override
     protected RequestCondition<?> getCustomTypeCondition( Class<?> handlerType ) {
-        return createCondition( AnnotationUtils.findAnnotation( handlerType, VersionedResource.class ) );
+        VersionedResource classAnnotation = AnnotationUtils.findAnnotation( handlerType, VersionedResource.class );
+        return createCondition( classAnnotation );
     }
 
     @Override
     protected RequestCondition<?> getCustomMethodCondition( Method method ) {
-        return createCondition( AnnotationUtils.findAnnotation( method, VersionedResource.class ) );
+        VersionedResource methodAnnotation = AnnotationUtils.findAnnotation( method, VersionedResource.class );
+        VersionedResource classAnnotation =
+                AnnotationUtils.findAnnotation( method.getDeclaringClass(), VersionedResource.class );
+        VersionedResource mergedAnnotation = nonNull( methodAnnotation ) ? methodAnnotation : classAnnotation;
+        return createCondition( mergedAnnotation );
     }
 
     @NonNull

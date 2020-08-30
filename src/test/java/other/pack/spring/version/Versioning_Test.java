@@ -45,8 +45,26 @@ public class Versioning_Test {
 
     @ParameterizedTest
     @MethodSource("versions")
-    public void versions( @Nullable String version, @NonNull String expectedResult ) throws Exception {
+    public void methodVersions( @Nullable String version, @NonNull String expectedResult ) throws Exception {
         String path = (isNull( version ) ? "" : "/" + version) + "/method";
+        final String result =
+                mockMvc.perform( MockMvcRequestBuilders.get( path ) ).andReturn().getResponse().getContentAsString();
+        assertThat( result ).isEqualTo( expectedResult );
+    }
+
+    @ParameterizedTest
+    @MethodSource("versions")
+    public void classVersions( @Nullable String version, @NonNull String expectedResult ) throws Exception {
+        String path = (isNull( version ) ? "" : "/" + version) + "/class";
+        final String result =
+                mockMvc.perform( MockMvcRequestBuilders.get( path ) ).andReturn().getResponse().getContentAsString();
+        assertThat( result ).isEqualTo( expectedResult );
+    }
+
+    @ParameterizedTest
+    @MethodSource("versions")
+    public void classMethodVersions( @Nullable String version, @NonNull String expectedResult ) throws Exception {
+        String path = (isNull( version ) ? "" : "/" + version) + "/classMethod";
         final String result =
                 mockMvc.perform( MockMvcRequestBuilders.get( path ) ).andReturn().getResponse().getContentAsString();
         assertThat( result ).isEqualTo( expectedResult );

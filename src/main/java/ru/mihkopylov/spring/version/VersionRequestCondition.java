@@ -1,11 +1,13 @@
 package ru.mihkopylov.spring.version;
 
+import java.lang.reflect.Method;
 import java.util.Optional;
 import javax.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.servlet.mvc.condition.RequestCondition;
+import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 import ru.mihkopylov.spring.version.exception.UnsupportedVersionExcepion;
 
 @AllArgsConstructor
@@ -16,6 +18,14 @@ public class VersionRequestCondition implements RequestCondition<VersionRequestC
     @NonNull
     private final RequestVersionExtractor requestVersionExtractor;
 
+    /**
+     * Combines two conditions in case when both class and method have
+     * {@link org.springframework.web.bind.annotation.RequestMapping} annotation and both have {@link VersionedResource}.
+     * According to {@link RequestMappingHandlerMapping#getMappingForMethod(Method, Class)} implementation
+     * {@code combine} method is called on class level condition and method level condition comes in parameter.
+     * Since method level {@link @VersionedResource} has more power, it is returned back.
+     */
+    @SuppressWarnings("JavadocReference")
     @Override
     public final VersionRequestCondition combine( VersionRequestCondition condition ) {
         return condition;
